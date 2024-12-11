@@ -3,8 +3,9 @@ dotenv.config();
 import { UserModel } from "../models/user.model.js"
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
+import createError from '../utils/createError.js';
 
-export const register = async(req,res)=>{
+export const register = async(req,res,next)=>{
 
    
     const hashpass = await bcrypt.hash(req.body.password,10);
@@ -17,20 +18,20 @@ export const register = async(req,res)=>{
         res.status(201).send("User succesfully created " +newUser)
     }catch(err){
         res.status(500).send("Something went wrong! "+err )
-        console.log(err)
+        next(err)
     }
    
 }
-export const login = async(req,res)=>{
+export const login = async(req,res,next)=>{
 
-    const{username,password} = req.body;
+    // const{username,password} = req.body;
    console.log("username and pass fetched")
    try{
     const User = await UserModel.findOne({
         username: req.body.username,
     })
  if(!User){
-    return res.status(404).send("User not found!")
+    return next(createError(404,"User not found!"))
  }
 console.log("user found!")
  const decodedpass = await bcrypt.compare(req.body.password,User.password)
@@ -62,13 +63,10 @@ console.log(token)
    
 }
 export const logout = async(req,res)=>{
-
-    try{
-
-    }catch(err){
-     
-     res.status(500).send("Something went wrong! "+err )
-     console.log(err)
-    }
+  res.clearCookie("accessToken",{
+    sameSite:none,
+    secure:true
+  }).status(200).send("user have been logged out successfully!")
+   
    
 }
