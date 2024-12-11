@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { Schema } from "mongoose";
  
-const communicationSchema = new Schema({
+const conversationSchema = new Schema({
 id: {
     type: String,
     required: true
@@ -31,11 +31,8 @@ lastMessage: {
 }
 )
 
-const CommunicationModel = mongoose.model('Communication',communicationSchema);
+export const ConversationModel = mongoose.model('Conversation',conversationSchema);
 
 
 
 
-module.exports({
-    CommunicationModel
-})

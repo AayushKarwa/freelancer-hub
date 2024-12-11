@@ -24,11 +24,8 @@ desc: {
 }
 )
 
-const ReviewModel = mongoose.model('Review',reviewSchema);
+export const ReviewModel = mongoose.model('Review',reviewSchema);
 
 
 
 
-module.exports({
-    ReviewModel
-})

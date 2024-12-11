@@ -40,11 +40,8 @@ payment_intent: {
 }
 )
 
-const OrderModel = mongoose.model('Order',orderSchema);
+export const OrderModel = mongoose.model('Order',orderSchema);
 
 
 
 
-module.exports({
-    OrderModel
-})

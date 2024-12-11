@@ -4,7 +4,8 @@ import { Schema } from "mongoose";
 const userSchema = new Schema({
 username: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
 },
 email: {
     type: String,
@@ -17,7 +18,7 @@ password: {
 },
 img: {
     type: String,
-    required: true
+    
 },
 country: {
     type: String,
@@ -25,11 +26,11 @@ country: {
 },
 phone: {
     type: String,
-    required: true
+    
 },
 desc: {
     type: String,
-    required: true
+    
 },
 isSeller: {
     type: Boolean,
@@ -41,11 +42,6 @@ isSeller: {
 }
 )
 
-const UserModel = mongoose.model('User',userSchema);
+export const UserModel = mongoose.model('User',userSchema);
 
 
-
-
-module.exports({
-    UserModel
-})

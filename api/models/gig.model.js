@@ -68,8 +68,5 @@ const gigSchema = new Schema({
 })
 
 
-const GigModel = mongoose.model('Gig',gigSchema);
+export const GigModel = mongoose.model('Gig',gigSchema);
 
-module.exports({
-    GigModel
-})

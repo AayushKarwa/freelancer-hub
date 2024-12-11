@@ -19,11 +19,8 @@ desc: {
 }
 )
 
-const MessageModel = mongoose.model('Message',messageSchema);
+export const MessageModel = mongoose.model('Message',messageSchema);
 
 
 
 
-module.exports({
-    MessageModel
-})
