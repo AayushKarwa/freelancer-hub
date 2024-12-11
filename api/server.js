@@ -10,11 +10,13 @@ import OrderRouter from './routes/user.route.js';
 import ReviewRouter from './routes/user.route.js';
 import ConversationRouter from './routes/user.route.js';
 import AuthRouter from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 
 
 app.use(express.json());
+app.use(cookieParser())
 
 //ROUTES
 
@@ -24,7 +26,7 @@ app.use("/api/orders",OrderRouter);
 app.use("/api/conversations",ConversationRouter);
 app.use("/api/messages",MessageRouter);
 app.use("/api/reviews",ReviewRouter);
-app.use("/auth",AuthRouter);
+app.use("/api/auth",AuthRouter);
 
 
 async function main(){
